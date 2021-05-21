@@ -12,12 +12,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "server_port" {
-    description = "The port the server will use for HTTP requests"
-    type = number
-    default = 8080
-}
-
 // create micro ec2 instance
 resource "aws_instance" "web_server" {
     // Amazon Machine Image ID of an Ubuntu 18.04 AMI  in us-east-1
@@ -26,14 +20,10 @@ resource "aws_instance" "web_server" {
     // EC2 Instance to run 
     instance_type = "t2.micro"    
     user_data = <<-EOF
-            #!/bin/bash
-            sudo yum update -y
-            sudo yum install httpd -y
-            sudo service httpd start
-            sudo chkconfig httpd on
-            echo "<html><h1>Welcome to AWS EC2 Instance deployed using Terraform!!!</h1></html>" | sudo tee /var/www/html/index.html
-            hostname -f >> /var/www/html/index.html
-            EOF
+                #!/bin/bash
+                echo "Hello, World" > index.html
+                nohup busybox httpd -f -p 80 &
+              EOF
     tags = {
         Name = "terraform-webserver-example"
     }
@@ -43,13 +33,6 @@ resource "aws_instance" "web_server" {
 resource "aws_security_group" "web_server" {
   name = "allow_web_traffic"
 
-ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   ingress {
     protocol    = "tcp"
     from_port   = 80
@@ -58,7 +41,7 @@ ingress {
   }
 
   egress {
-    protocol    = -1
+    protocol    = "-1"
     from_port   = 0
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
