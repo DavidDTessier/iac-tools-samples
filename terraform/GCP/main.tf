@@ -17,6 +17,7 @@ provider "google" {
 variable "project_id" {
     description = "The GCP Project"
     type = string
+    default = "dtessier-hero-path-302118"
 }
 
 variable "region" {
@@ -34,6 +35,7 @@ variable "zone" {
 variable "webservername" {
     description = "The name to associate with the webserver"
     type = string
+    default = "mywebserver"
 }
 
 variable "machine_type" {
