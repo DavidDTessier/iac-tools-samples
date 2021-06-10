@@ -36,7 +36,7 @@ class MyStack extends TerraformStack {
       name : "default"
     })
 
-    new ComputeFirewall(this, "default_fw", {
+    new ComputeFirewall(this, "default_fw_ts", {
       network: data_net.name,
       name: "allow",
       allow: [{ 
@@ -46,7 +46,7 @@ class MyStack extends TerraformStack {
     })
 
     const compute = new ComputeInstance(this, 'ComputeInstance', {
-      name: 'cdktf-instance',
+      name: 'cdktf-instance-ts',
       machineType: 'f1-micro',
       bootDisk: [{
         initializeParams: [{
@@ -64,8 +64,8 @@ class MyStack extends TerraformStack {
       tags: ["http-server"]
     })
 
-    const ac = compute.networkInterface[0].accessConfig
-    const ip = (ac && ac.length > 0) ? ac[0].natIp : "0" 
+    let ac = compute.networkInterface[0].accessConfig
+    let ip = (ac && ac.length > 0) ? ac[0].natIp : "0" 
     new TerraformOutput(this, 'webserver_ip', {
       value: ip
     })
