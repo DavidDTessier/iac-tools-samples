@@ -20,11 +20,11 @@ class AzureWebAppStack extends TerraformStack {
     // define resources here
     new AzurermProvider(this, "azurerm",{
         features: [{}],
-        subscriptionId : "f7552dfc-6b6d-4d0b-8998-35bccfb496b8",
-        tenantId  : "9e920556-6f80-4d4e-a7be-736a876106a0",
-        clientSecret  : "snZB5sKwhNEyx.t.bEo~IML7Y3ZiNZTNFw",
-        clientId   :"b4094d4b-142a-460b-86b6-371b186b1fff"
-      }
+        subscriptionId : "00000000-0000-0000-0000-000000000000",
+        clientId : "00000000-0000-0000-0000-000000000000",
+        clientSecret  : "",
+        tenantId  :"00000000-0000-0000-0000-000000000000"
+    }
     )
 
     new RandomProvider(this, "rnd", {})
