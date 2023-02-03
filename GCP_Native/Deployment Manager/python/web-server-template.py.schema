@@ -1,0 +1,17 @@
+info:
+  title: VM with startup script
+  author: David Tessier
+  description: Creates a disk running the provided startup script.
+
+required:
+- zone
+- startup-script
+
+properties:
+  zone:
+    description: Zone to create the resources in.
+    type: string
+
+  startup-script:
+    description: The startup script to run on VM intialization.
+    type: string
