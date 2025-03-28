@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "cdktf": "^0.3.0",
-    "constructs": "^3.3.75"
+    "constructs": "^3.4.344"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
