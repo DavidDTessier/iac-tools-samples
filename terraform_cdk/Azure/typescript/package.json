@@ -21,7 +21,7 @@
   "dependencies": {
     "cdktf": "^0.3.0",
     "constructs": "^3.3.77",
-    "js-base64": "^3.6.1"
+    "js-base64": "^3.7.7"
   },
   "devDependencies": {
     "@types/node": "^15.12.2",
